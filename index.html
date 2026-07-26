@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holo Gambit — a holotable duel of three-in-a-row</title>
+  <meta name="description" content="A modern, Star-Wars-flavoured take on tic-tac-toe: pick a commander, project your sigil onto a glowing holotable, and align three sectors to seize the front. Play a friend or a sharp AI, with signature abilities and best-of match play." />
+  <link rel="stylesheet" href="css/style.css?v=4" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== TITLE / SETUP ===== -->
+    <section id="menu" class="screen">
+      <div class="stars-bg" aria-hidden="true"></div>
+
+      <header class="brand">
+        <h1 class="title">HOLO<span>GAMBIT</span></h1>
+        <p class="tagline">A holotable duel of three-in-a-row</p>
+        <p class="best-line" id="bestLine"></p>
+      </header>
+
+      <div class="setup">
+        <!-- mode + rules (one wrapping row) -->
+        <div class="row modes">
+          <div class="seg" id="modeSeg">
+            <button class="seg-btn active" data-mode="ai">Solo vs AI</button>
+            <button class="seg-btn" data-mode="2p">Two Players</button>
+          </div>
+          <div class="seg" id="diffSeg">
+            <span class="seg-label">Skill</span>
+            <button class="seg-btn" data-diff="padawan">Padawan</button>
+            <button class="seg-btn active" data-diff="knight">Knight</button>
+            <button class="seg-btn" data-diff="master">Master</button>
+          </div>
+          <div class="seg" id="lenSeg">
+            <span class="seg-label">Match</span>
+            <button class="seg-btn active" data-len="3">Best of 3</button>
+            <button class="seg-btn" data-len="5">Best of 5</button>
+          </div>
+          <div class="seg" id="abilSeg">
+            <span class="seg-label">Abilities</span>
+            <button class="seg-btn active" data-abil="on">On</button>
+            <button class="seg-btn" data-abil="off">Off</button>
+          </div>
+        </div>
+
+        <!-- commander pickers -->
+        <div class="duelists">
+          <div class="picker" id="pickerL"></div>
+          <div class="versus">VS</div>
+          <div class="picker" id="pickerR"></div>
+        </div>
+
+        <div class="row actions">
+          <label class="sound-toggle"><input type="checkbox" id="soundChk" checked /> <span>Sound</span></label>
+          <button id="startBtn" class="cta">Project &amp; Duel</button>
+        </div>
+
+        <p class="controls-hint" id="controlsHint"></p>
+      </div>
+
+      <footer class="credit">
+        Original game · no affiliation with Lucasfilm or Disney · built for fun.
+      </footer>
+    </section>
+
+    <!-- ===== MATCH ===== -->
+    <section id="game" class="screen hidden">
+      <div class="topbar">
+        <button id="quitBtn" class="mini">‹ Menu</button>
+        <div class="match-label" id="matchLabel"></div>
+        <div class="topbar-right">
+          <button id="soundBtn" class="mini" title="Toggle sound">♪</button>
+          <button id="pauseBtn" class="mini">Pause</button>
+        </div>
+      </div>
+      <div class="stage">
+        <canvas id="board"></canvas>
+      </div>
+      <p class="controls-hint" id="matchControls"></p>
+    </section>
+
+    <!-- ===== RESULT ===== -->
+    <div id="result" class="overlay hidden">
+      <div class="result-card">
+        <canvas id="winPortrait" width="140" height="140"></canvas>
+        <h2 id="winTitle">Victory</h2>
+        <p id="winSub"></p>
+        <div class="end-stats" id="winStats"></div>
+        <div class="result-actions">
+          <button id="rematchBtn" class="cta">Rematch</button>
+          <button id="menuBtn" class="mini">Change Commanders</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/data.js?v=4"></script>
+  <script src="js/portraits.js?v=4"></script>
+  <script src="js/audio.js?v=4"></script>
+  <script src="js/engine.js?v=4"></script>
+  <script src="js/ui.js?v=4"></script>
+</body>
+</html>
